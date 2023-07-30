@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+    }
+    body {
+        background-image: url('riverimage.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 660px;
+    }
+    img {
+        cursor: pointer;
+    }
+    .farmer {
+        width: 120px;
+        position: absolute;
+        top: 360px;
+        left: 180px;
+        transition: left 2s,top 2s;
+    }
+    .farmerMoveBank {
+        top: 360px;
+        left: 520px;
+    }
+    .lion {
+        width: 120px; 
+        position: absolute;
+        top: 350px;
+        left: inherit;
+        transition: left 2s,top 2s;
+    }
+    .lionMoveBank {
+        top: 360px;
+        left: 650px;
+    }
+    .goat {
+        width: 80px;
+        position: absolute;
+        top: 350px;
+        left: 300px;
+        transition: left 2s,top 2s;
+    }
+    .grass {
+        width: 120px;
+        transform: scaleX(-1);
+        position: absolute;
+        top: 350px;
+        left: 100px;
+        transition: left 2s,top 2s;
+    }
+    .boat {
+        width: 100px;
+        position: absolute;
+        top: 430px;
+        left: 270px;
+        transition: left 2s,top 2s;
+    }
+    .boatMove {
+        left: 600px;
+        top: 380px;
+    }
+    .goatMove {
+        top: 420px;
+        left: 360px;
+    }
+    .goatMoveBank {
+        top: 450px;
+        left: 430px;
+    }
+    .grassMove {
+        top: 480px;
+    }
+    .grassMoveBank {
+        top: 390px;
+        left: 500px;
+    }
+    .farmerMove {
+        top: 440px;
+    }
+    .lionMove {
+        top: 440px;
+    }
+    .farmerMoveBankUp {
+        top: 350px;
+        left: 820px;
+    }
+    .goatMoveBankUp {
+        top: 360px;
+        left: 1040px;
+    }
+    .grassMoveBankUp {
+        top: 350px;
+        left: 940px;
+    }
+    .lionMoveBankUp {
+        left: 1040px;
+    }
+</style>
+<body>
+    <img id="farmer" class="farmer"  src="blackpanther.png" alt="" title="farmer">
+    <img id="lion" src="lionriver.png" alt="" class="lion" title="lion">
+    <img id="goat" class="goat" src="goatriver.png" alt="" title="goat">
+    <img id="grass" src="grassriver.png" alt="" class="grass" title="grass">
+    <img id="boat" class="boat" src="boatriver.png" alt="" title="boat">
+    <h1 id="demo1"></h1>
+    <h1 id="demo2"></h1>
+    <h1 id="demo3"></h1>
+    <h1 id="demo4" style="background-color:blue;color: white;width: 30%;margin: auto; border-radius: 25px;padding: 15px 0;text-align: center; margin-top: 50px;box-shadow: 2px 2px 10px gray;display: none;"></h1>
+    <script>
+        var limit;
+        var count = 0;
+        var c1 = 0,c2 = 0,c3 = 0,c4 = 0,c5 = 0;
+        var cb1 = 0,cb2 = 0,cb3 = 0,cb4 = 0,cb5 = 0;
+        document.getElementById("farmer").onclick = function() {
+            if(count >= 2 && c1 == 0) {
+                alert("Max Input Reached");
+            } else {
+                if(c1 == 1) {
+                    c1--;
+                    count--;
+                } else {
+                    c1++
+                    count++;
+                }
+                if(c5 == 0 || cb1 == 0) {
+                    this.classList.toggle("farmerMove");
+                } else {
+                    this.classList.toggle("farmerMoveBankUp")
+                }
+            }
+        }
+        document.getElementById("grass").onclick = function() {
+            if(count >= 2 && c2 == 0) {
+                alert("Max Input Reached");
+            } else {
+                if(c2 == 1) {
+                    c2--;
+                    count--;
+                } else {
+                    c2++
+                    count++;
+                }
+                if(c5 == 0 || cb2 == 0) {
+                this.classList.toggle("grassMove");
+                } else {
+                    this.classList.toggle("grassMoveBankUp");
+                }
+            }
+        }
+        document.getElementById("lion").onclick = function() {
+            if(count >= 2 && c3 == 0) {
+                alert("Max Input Reached");
+            } else {
+                if(c3 == 1) {
+                    c3--;
+                    count--;
+                } else {
+                    c3++
+                    count++;
+                }
+                if(c5 == 0 || cb3 == 0) {
+                    this.classList.toggle("lionMove");
+                } else {
+                    this.classList.toggle("lionMoveBankUp");
+                }
+            }
+        }
+        document.getElementById("goat").onclick = function() {
+            if(count >= 2 && c4 == 0) {
+                alert("Max Input Reached");
+            } else {
+                if(c4 == 1) {
+                    c4--;
+                    count--;
+                } else {
+                    c4++
+                    count++;
+                }
+                if(c5 == 0 || cb4 == 0) {
+                    this.classList.toggle("goatMove");
+                } else {
+                    this.classList.toggle("goatMoveBankUp");
+                }
+            }
+        }
+        document.getElementById("boat").onclick = function() {
+            if(count == 0 || c1 == 0) {
+                document.getElementById("demo2").innerHTML="Boat is not able to move";
+            } else if(c1 == 1 && count == 1 && cb2 == 0 && cb3 == 0 && cb4 ==0) {
+                document.getElementById("demo2").innerHTML="Lion eats goat (or) goat eats grass";
+            } else if(c1 == 1 && c3 == 1 && cb2 == 0 && cb4 == 0) {
+                document.getElementById("demo3").innerHTML="Goat Eats the grass";
+            } else if(c1 == 1 && c2 == 1 && cb4 == 0 && cb3 == 0) {
+                document.getElementById("demo3").innerHTML="Lion eats th e Goat";
+            } else if (c1 == 1 && c4 == 1) {
+                if(c5 == 0) {
+                    c5++;
+                    cb1++;
+                    cb4++
+                } else {
+                    c5--;
+                    cb1--;
+                    cb4--;
+                }
+                document.getElementById("demo3").innerHTML="Now it's a safe move";
+
+                this.classList.toggle("boatMove");
+                document.getElementById("farmer").classList.toggle("farmerMoveBank");
+                document.getElementById("demo2").innerHTML="Boat is able to move";
+                document.getElementById("goat").classList.toggle("goatMoveBank");
+            } else if(cb2 == 1 && cb4 == 1 && c2 == 0) {
+                document.getElementById("demo3").innerHTML="It's not possible to move";
+                document.getElementById("demo2").innerHTML="Goat eats grass";
+            } else if(c1 == 1 && c2 == 1) {
+                if(c5 == 0) {
+                    c5++;
+                    cb1++;
+                    cb2++;
+                } else {
+                    c5--;
+                    cb1--;
+                    cb2--;
+                }
+                this.classList.toggle("boatMove");
+
+                document.getElementById("farmer").classList.toggle("farmerMoveBank");
+
+                document.getElementById("grass").classList.toggle("grassMoveBank");
+            } else if(c1 == 1 && c3 == 1) {
+                if(c5 == 0) {
+                    c5++;
+                    cb1++;
+                    cb3++;
+                } else {
+                    c5--;
+                    cb1--;
+                    cb3--;
+                }
+                this.classList.toggle("boatMove");
+                document.getElementById("farmer").classList.toggle("farmerMoveBank");
+                document.getElementById("lion").classList.toggle("lionMoveBank");
+            } else if(cb3 == 1 && cb4 == 1 && cb2 == 0) {
+                document.getElementById("demo2").innerHTML="Lion eats the goat";
+                document.getElementById("demo3").innerHTML="Not a safe move";
+            } else {
+                if(c5 == 0) {
+                    c5++;
+                    cb1++;
+                } else {
+                    c5--;
+                    cb1--;
+                }
+                this.classList.toggle("boatMove");
+                document.getElementById("farmer").classList.toggle("farmerMoveBank");
+                document.getElementById("demo2").innerHTML="Boat is able to move";
+            }
+            if(cb2 == 1 && cb3 == 1 && cb4 == 1) {
+                document.getElementById("demo1").innerHTML="";
+                document.getElementById("demo2").innerHTML="";
+                document.getElementById("demo3").innerHTML="";
+                document.getElementById("demo4").style.display="";
+                document.getElementById("demo4").innerHTML="You Win";
+                var remImg = document.getElementsByTagName("img");
+                for(let x in remImg) {
+                    remImg[x].onclick = function() {
+                        return false;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
